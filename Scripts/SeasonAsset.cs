@@ -4,14 +4,11 @@ using UnityEngine;
 
 namespace Kyoto
 {
-    public class SeasonSunlight : WeightedCycle
+    public class SeasonAsset : WeightedCycle
     {
-        public Color sunColor;
-
         protected override void SetWeight()
         {
-            weight = curve.Evaluate(timeController.gameTimeNormalized);
+            weight = curve.Evaluate(timeController.gameDateNormalized);
         }
-
     }
 }

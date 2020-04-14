@@ -7,14 +7,16 @@ namespace Kyoto
 public class SeasonVisualizer : MonoBehaviour
 {
     public Transform cube;
-    public Season season;
+    // public Season season;
+    public WeightedCycle cycle;
     private Vector3 startingPosition;
 
     // Start is called before the first frame update
     void Start()
     {
         cube = transform.GetChild(0);
-        season = GetComponent<Season>();
+        // season = GetComponent<Season>();
+        cycle = GetComponent<WeightedCycle>();
         startingPosition = cube.transform.position;
     }
 
@@ -23,7 +25,8 @@ public class SeasonVisualizer : MonoBehaviour
     {
         // transform.Translate(Vector3.up * season.weight);
         // cube.transform.position = startingPosition + (Vector3.up * season.weight);
-        cube.transform.position = startingPosition + (Vector3.up * season.weight);
+        // cube.transform.position = startingPosition + (Vector3.up * season.weight);
+        cube.transform.position = startingPosition + (Vector3.up * cycle.GetWeight());
     }
 }
 }
