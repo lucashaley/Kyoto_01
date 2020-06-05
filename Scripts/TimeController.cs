@@ -6,107 +6,77 @@ using Pixelplacement;
 
 namespace Kyoto
 {
-  public class TimeController : Singleton<TimeController>
-  {
-    [Header("Date and Time")]
-    [SerializeField] private float timeScale = 1;
-    private float tickMultiplier = 100f;
-    [SerializeField] private string startTime;
-    public DateTime startDateTime;
-    public bool overrideDate;
-    public String overriddenDate;
-
-    // Not sure we need this yet
-    // private float previousGameDateTimeNormalizedDelta = 0f;
-    // public float gameDateTimeNormalizedDelta = 0f;
-
-    [Header("Real")]
-    [SerializeField] private string realDate;
-    [SerializeField] private string realTime;
-
-
-    [Header("Game")]
-    private DateTime gameDateTime;
-    [SerializeField] private string gameDate;
-    [SerializeField] private string gameTime;
-    public float gameDateNormalized;
-    public float gameTimeNormalized;
-
-    private float daySeconds;
-
-    private GameController gameController;
-
-    // protected override void OnRegistration ()
-    // {
-    //     UpdateGameDateTime();
-    //     UpdateGameDateNormalized();
-    // }
-
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// A singleton to control the timescale of the game.
+    /// </summary>
+    public class TimeController : Singleton<TimeController>
     {
-        gameController = GameController.Instance;
+        [Header("Date and Time")]
+        [SerializeField] public float timeScale = 1;
+        public bool useTimeScale = false;
+        public bool overrideDate;
+        public String overriddenDate;
 
-        startTime = System.DateTime.Now.ToString("o");
-        startDateTime = System.DateTime.Now;
+        [Header("Location Start")]
+        [SerializeField] public DateTime locationStartDateTime;
+        [Header("Real DateTime")]
+        [SerializeField] public DateTime realDateTime;
+        [Header("Game DateTime")]
+        [SerializeField] public DateTime gameDateTime;
 
-        if (overrideDate)
+        [Header("Normalized")]
+        public float gameDateNormalized;
+        public float gameTimeNormalized;
+        // public float gameDateNormalizedDelta = 0f;
+
+        private GameController gameController;
+
+        // protected override void OnRegistration ()
+        // {
+        //     UpdateGameDateTime();
+        //     UpdateGameDateNormalized();
+        // }
+        /// <summary>
+        /// Sets GameController singleton and grabs the current time.
+        /// </summary>
+        void Awake()
         {
+            gameController = GameController.Instance;
 
+            if (overrideDate)
+            {
+
+            }
         }
 
-        UpdateGameDateTime();
-        UpdateGameDateNormalized();
+        void Start()
+        {
+            Time.timeScale = useTimeScale ? timeScale : 1.0f;
+            gameDateTime = System.DateTime.Now;
+            realDateTime = System.DateTime.Now;
+            locationStartDateTime = System.DateTime.Now;
+        }
 
-      // Not sure we need this yet
-      // previousGameDateTimeNormalizedDelta = GetGameDateNormalized();
+        // Update is called once per frame
+        void Update()
+        {
+            if (useTimeScale)
+            {
+                gameDateTime.AddSeconds(Time.deltaTime);
+            } else {
+                TimeSpan difference = new TimeSpan((long)(TimeSpan.TicksPerSecond * Time.deltaTime * timeScale));
+                gameDateTime.AddTimeSpan(difference);
+            }
+            realDateTime.AddSeconds(Time.unscaledDeltaTime);
+            gameDateNormalized = gameDateTime.NormalizedDate();
+            gameTimeNormalized = gameDateTime.NormalizedTime();
 
-      TimeSpan oneDay = new TimeSpan(1,0,0,0);
-      daySeconds = (float)oneDay.TotalSeconds;
+            gameController.UpdateGameDateNormalizedText(gameDateNormalized);
+        }
+
+        public System.DateTime getGameDateTime ()
+        {
+            return (System.DateTime)gameDateTime;
+        }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-      UpdateGameDateTime();
-      UpdateGameDateNormalized();
-      UpdateGameTimeNormalized();
-
-      gameController.UpdateGameDateNormalizedText(gameDateNormalized);
-    }
-
-    private void UpdateGameDateTime()
-    {
-      DateTime now = System.DateTime.Now;
-      realDate = System.DateTime.Now.ToString("MM/dd/yyyy");
-      realTime = System.DateTime.Now.ToString("HH:mm:ss");
-
-      System.Globalization.CultureInfo provider = System.Globalization.CultureInfo.InvariantCulture;
-      // DateTime startDateTime = System.DateTime.ParseExact(startTime, "o", provider);
-      TimeSpan difference = now - startDateTime;
-
-      TimeSpan differenceScaled = TimeSpan.FromTicks((long)(difference.Ticks * timeScale * tickMultiplier));
-      gameDateTime = now + differenceScaled;
-      gameDate = gameDateTime.ToString("MM/dd/yyyy");
-      gameTime = gameDateTime.ToString("HH:mm:ss");
-    }
-
-    public void UpdateGameDateNormalized()
-    {
-      int numberOfDaysThisYear = DateTime.IsLeapYear(gameDateTime.Year)?366:365;
-      float normalized = (float)gameDateTime.DayOfYear/numberOfDaysThisYear;
-
-      // Not sure we need this yet
-      // gameDateTimeNormalizedDelta = gameDateTimeNormalized - previousGameDateTimeNormalizedDelta;
-
-      gameDateNormalized = normalized;
-    }
-
-    public void UpdateGameTimeNormalized()
-    {
-        TimeSpan nowSpan = new TimeSpan(gameDateTime.Hour, gameDateTime.Minute, gameDateTime.Second);
-        float nowSeconds = (float)nowSpan.TotalSeconds;
-        gameTimeNormalized = nowSeconds/daySeconds;
-    }
-  }
 }

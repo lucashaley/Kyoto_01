@@ -6,8 +6,9 @@ namespace Kyoto
 {
     public abstract class WeightedCycle : MonoBehaviour
     {
-        protected float weight;
+        public float weight;
         public float key;
+        public bool isConstant = false;
         public AnimationCurve curve;
 
         public WeightedCycle priorNode, nextNode;
@@ -73,8 +74,18 @@ namespace Kyoto
             Keyframe[] tempKeys = curve.keys;
             for (int i = 0; i < tempKeys.Length; i++)
             {
-                tempKeys[i].inTangent = 0f;
-                tempKeys[i].outTangent = 0f;
+                tempKeys[i].inTangent = isConstant ? Mathf.Infinity : 0f;
+                tempKeys[i].outTangent = isConstant ? Mathf.Infinity : 0f;
+
+                // tempKeys[i].inTangent = 0f;
+                // tempKeys[i].outTangent = 0f;
+                //
+                // if (isConstant)
+                // {
+                //     Debug.Log("Create Constant Key: " + gameObject.name);
+                //     tempKeys[i].inTangent = float.PositiveInfinity;
+                //     tempKeys[i].outTangent = float.PositiveInfinity;
+                // }
             }
             curve.keys = tempKeys;
         }
@@ -89,7 +100,13 @@ namespace Kyoto
 
         public float GetWeight()
         {
-            return weight;
+            if (float.IsNaN(weight))
+            {
+                // Debug.Log(transform.parent.name + ":" + gameObject.name);
+                return 0f;
+            } else {
+                return weight;
+            }
         }
     }
 }

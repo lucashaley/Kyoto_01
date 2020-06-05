@@ -1,11 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pixelplacement;
+
+// https://suncalc.org/#/lat,lon,zoom/date/time/objectlevel/maptype
 
 namespace Kyoto
 {
-    public class LocationController : MonoBehaviour
+    /// <summary>
+    /// A singleton to store information about current location.
+    /// </summary>
+    public class LocationController : Singleton<LocationController>
     {
+        public LocationData locationData;
+        public float longitude, latitude;
+        public float offsetUTC;
         public SeasonSunlightController[] sunlightControllers;
         public SeasonAsset[] seasonAssets;
         public Color weightedSunColor;
@@ -15,6 +24,10 @@ namespace Kyoto
         {
             sunlightControllers = GetComponentsInChildren<SeasonSunlightController>();
             seasonAssets = GetComponentsInChildren<SeasonAsset>();
+
+            longitude = locationData.Longitude;
+            latitude = locationData.Latitude;
+            offsetUTC = locationData.OffsetUTC;
         }
 
         // Update is called once per frame

@@ -4,18 +4,20 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomPropertyDrawer(typeof(DateTime))]
+[CustomPropertyDrawer(typeof(Kyoto.DateTime))]
 public class DateTimeDrawer : PropertyDrawer
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
+        // for prefab overrides
+        EditorGUI.BeginProperty(position, label, property);
 
-    }
+        //draw label
+        position = EditorGUI.PrefixLabel(position, GUIUtility.GetControlID(FocusType.Passive), label);
 
-    // Update is called once per frame
-    void Update()
-    {
+        Rect amountRect = new Rect(position.x, position.y, position.width, position.height);
+        EditorGUI.PropertyField(amountRect, property.FindPropertyRelative("rawString"), GUIContent.none);
 
+        EditorGUI.EndProperty();
     }
 }

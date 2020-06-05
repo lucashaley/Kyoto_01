@@ -22,7 +22,10 @@ namespace Kyoto
 
             for (int i = 0; i < sunlights.Length; i++)
             {
-                averagedColor += sunlights[i].sunColor * sunlights[i].GetWeight();
+                // averagedColor += sunlights[i].sunColor * sunlights[i].GetWeight();
+                averagedColor = Color.Lerp(averagedColor, sunlights[i].sunColor, sunlights[i].GetWeight());
+                // Debug.Log(sunlights[i].GetWeight());
+                // Debug.Log("Color:" + averagedColor);
             }
 
             weightedColor = averagedColor;
