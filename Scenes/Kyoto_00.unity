@@ -592,7 +592,6 @@ MonoBehaviour:
   children: []
   tempMat: {fileID: 0}
   isFaded: 1
-  outlineColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1001 &252752941
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -869,7 +868,9 @@ MonoBehaviour:
   viewStateController: {fileID: 0}
   rakeThreshold: 0.05
   stateChangeTime: 0.8
+  rakeFadeColor: {r: 0.8018868, g: 0.7435331, b: 0.44255075, a: 1}
   rakeFadeAmount: 0.1
+  rakeOutlineWidth: 0.25
 --- !u!114 &321167891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9622,7 +9623,6 @@ MonoBehaviour:
   children: []
   tempMat: {fileID: 0}
   isFaded: 1
-  outlineColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1001 &1186674084
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11263,7 +11263,6 @@ MonoBehaviour:
   children: []
   tempMat: {fileID: 0}
   isFaded: 1
-  outlineColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1001 &1603164440
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11549,7 +11548,6 @@ MonoBehaviour:
   children: []
   tempMat: {fileID: 0}
   isFaded: 1
-  outlineColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1 &1642354994
 GameObject:
   m_ObjectHideFlags: 1
