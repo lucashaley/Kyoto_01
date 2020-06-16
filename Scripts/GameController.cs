@@ -16,6 +16,10 @@ namespace Kyoto
         public Text gameDateNormalizedText;
         public Text gameTimeText;
         private TimeController timeController;
+        public ViewStateController viewStateController;
+
+        [Header("Global Variables")]
+        public float rakeThreshold = 0.05f;
 
         // Start is called before the first frame update
         void Awake()
@@ -25,6 +29,8 @@ namespace Kyoto
             gameDateNormalizedText = GameObject.Find("GameDateNormalized").GetComponent<Text>();
             gameTimeText = GameObject.Find("GameTime").GetComponent<Text>();
             timeController = TimeController.Instance;
+            // REFACTOR
+            viewStateController = GameObject.Find("ViewController").GetComponent<ViewStateController>();
         }
 
         public void UpdateGameDateNormalizedText (float newValue)
