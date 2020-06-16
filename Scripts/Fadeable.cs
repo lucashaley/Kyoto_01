@@ -12,7 +12,6 @@ namespace Kyoto
         // public Material[] mats;
         public Material tempMat;
         public bool isFaded;
-        public Color outlineColor = Color.green;
 
         // Start is called before the first frame update
         void Awake()
@@ -30,8 +29,8 @@ namespace Kyoto
 
                 var outline = rend.gameObject.AddComponent<Outline>();
                 outline.OutlineMode = Outline.Mode.OutlineAll;
-                outline.OutlineColor = Color.yellow;
-                outline.OutlineWidth = 0.25f;
+                outline.OutlineColor = gameController.rakeFadeColor;
+                outline.OutlineWidth = gameController.rakeOutlineWidth;
                 outline.UpdateMaterialProperties();
                 // outline.SetPrecomputeOutline(true);
 
@@ -62,7 +61,12 @@ namespace Kyoto
                         tempColor.a = isFaded ? gameController.rakeFadeAmount : 1f;
                         // rend.materials[j].SetColor("_Color", tempColor);
                         Tween.Color (rend.materials[j], tempColor, gameController.stateChangeTime, 0);
+                    } else if (rend.materials[j].shader.name.Contains("Outline Fill")) {
+                        // Debug.Log("OUTLINE");
+                        Tween.ShaderFloat (rend.materials[j], "_OutlineWidth", isFaded ? 1f : 0f, gameController.stateChangeTime, 0f);
+                        // rend.materials[j].SetFloat("_OutlineWidth", isFaded ? 1.0f : 0f);
                     }
+
                 }
                 // rend.materials = mats;
                 rend.GetComponent<Outline>().OutlineWidth = isFaded ? 1f : 0f;

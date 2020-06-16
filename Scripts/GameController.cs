@@ -22,7 +22,11 @@ namespace Kyoto
         // REFACTOR to data?
         public float rakeThreshold = 0.05f;
         public float stateChangeTime = 0.8f;
+
+        [Header("Fading")]
+        public Color rakeFadeColor = Color.red;
         public float rakeFadeAmount = 0.1f;
+        public float rakeOutlineWidth = 0.25f;
 
         // Start is called before the first frame update
         void Awake()
