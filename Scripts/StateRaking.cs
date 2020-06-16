@@ -7,6 +7,7 @@ namespace Kyoto
 {
     public class StateRaking : State
     {
+        private GameController gameController;
         public Transform cameraPivot;
         public bool isRotating;
 
@@ -17,6 +18,7 @@ namespace Kyoto
 
         void Start ()
         {
+            gameController = GameController.Instance;
             cameraPivot = GameObject.Find("CameraPivot").GetComponent<Transform>();
             defaultCameraPosition = Camera.main.transform.position;
             defaultCameraRotation = Camera.main.transform.rotation;
@@ -31,7 +33,7 @@ namespace Kyoto
         {
             if (!isRotating)
             {
-                Tween.Rotate (cameraPivot, new Vector3 (0, 90, 0), Space.Self, 1, 0f, Tween.EaseInOutStrong, Tween.LoopType.None, ()=>isRotating=true, ()=>isRotating=false);
+                Tween.Rotate (cameraPivot, new Vector3 (0, 90, 0), Space.Self, gameController.stateChangeTime, 0f, Tween.EaseInOutStrong, Tween.LoopType.None, ()=>isRotating=true, ()=>isRotating=false);
             }
         }
 
@@ -39,7 +41,7 @@ namespace Kyoto
         {
             if (!isRotating)
             {
-                Tween.Rotate (cameraPivot, new Vector3 (0, -90, 0), Space.Self, 1, 0f, Tween.EaseInOutStrong, Tween.LoopType.None, ()=>isRotating=true, ()=>isRotating=false);
+                Tween.Rotate (cameraPivot, new Vector3 (0, -90, 0), Space.Self, gameController.stateChangeTime, 0f, Tween.EaseInOutStrong, Tween.LoopType.None, ()=>isRotating=true, ()=>isRotating=false);
             }
         }
     }

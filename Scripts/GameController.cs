@@ -19,7 +19,10 @@ namespace Kyoto
         public ViewStateController viewStateController;
 
         [Header("Global Variables")]
+        // REFACTOR to data?
         public float rakeThreshold = 0.05f;
+        public float stateChangeTime = 0.8f;
+        public float rakeFadeAmount = 0.1f;
 
         // Start is called before the first frame update
         void Awake()

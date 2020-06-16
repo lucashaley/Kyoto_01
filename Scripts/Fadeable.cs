@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pixelplacement;
 
 namespace Kyoto
 {
     public class Fadeable : MonoBehaviour
     {
+        private GameController gameController;
         public Renderer[] children;
         // public Material[] mats;
         public Material tempMat;
@@ -15,6 +17,7 @@ namespace Kyoto
         // Start is called before the first frame update
         void Awake()
         {
+            gameController = GameController.Instance;
             // renderers = gameObject.GetComponentsInChildren<Renderer>();
             // mats = new Material[renderers.materials.Length];
             children = GetComponentsInChildren<Renderer>();
@@ -31,6 +34,9 @@ namespace Kyoto
                 outline.OutlineWidth = 0.25f;
                 outline.UpdateMaterialProperties();
                 // outline.SetPrecomputeOutline(true);
+
+                // try setting the _ZWrite
+                Tween.ShaderFloat (rend.material, "_ZWrite", 1, 0, 0);
             }
         }
 
@@ -50,11 +56,12 @@ namespace Kyoto
                     if (rend.materials[j].shader.name == "Standard")
                     {
                         // shared material?
-                        Debug.Log("Standard");
+                        // Debug.Log("Standard");
                         tempMat = rend.materials[j];
                         Color tempColor = tempMat.GetColor("_Color");
-                        tempColor.a = isFaded ? 0.15f : 1f;
-                        rend.materials[j].SetColor("_Color", tempColor);
+                        tempColor.a = isFaded ? gameController.rakeFadeAmount : 1f;
+                        // rend.materials[j].SetColor("_Color", tempColor);
+                        Tween.Color (rend.materials[j], tempColor, gameController.stateChangeTime, 0);
                     }
                 }
                 // rend.materials = mats;
