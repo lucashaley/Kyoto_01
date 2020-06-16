@@ -69,8 +69,8 @@ namespace Kyoto
 
                 }
                 // rend.materials = mats;
-                rend.GetComponent<Outline>().OutlineWidth = isFaded ? 1f : 0f;
-                rend.GetComponent<Outline>().UpdateMaterialProperties();
+                // rend.GetComponent<Outline>().OutlineWidth = isFaded ? 1f : 0f;
+                // rend.GetComponent<Outline>().UpdateMaterialProperties();
             }
         }
 
