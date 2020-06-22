@@ -24,9 +24,13 @@ namespace Kyoto
         public float stateChangeTime = 0.8f;
 
         [Header("Fading")]
-        public Color rakeFadeColor = Color.red;
-        public float rakeFadeAmount = 0.1f;
-        public float rakeOutlineWidth = 0.25f;
+        public float shadowDistance = 60f;
+        public float shadowDistanceFaded = 30f;
+        public float shadowFadeTime = 0.5f;
+
+        public float fadeableFadeAmount = 0.1f;
+        public Color fadeableOutlineColor = Color.red;
+        public float fadeableOutlineWidth = 0.25f;
 
         // Start is called before the first frame update
         void Awake()

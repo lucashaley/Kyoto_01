@@ -7,9 +7,9 @@ namespace Kyoto
     [CreateAssetMenu(fileName = "New LocationData", menuName = "Kyoto/Location Data", order = 51)]
     public class LocationData : ScriptableObject
     {
-        [SerializeField] private string locationName;
-        [SerializeField] private float longitude, latitude;
-        [SerializeField] private float offsetUTC;
+        [SerializeField] private string locationName = default;
+        [SerializeField] private float longitude = default, latitude = default;
+        [SerializeField] private float offsetUTC = default;
 
         public float Longitude
         {

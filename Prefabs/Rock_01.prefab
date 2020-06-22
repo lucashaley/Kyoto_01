@@ -44,10 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b1cdf9f9aad44a868a0dce14c3e3b94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  children: []
-  mats: []
+  shader: {fileID: 0}
+  childrenRenderers: []
   tempMat: {fileID: 0}
   isFaded: 0
+  shadowcaster: {fileID: 0}
+  fader: {fileID: 0}
 --- !u!1001 &7866516441893553768
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -109,6 +111,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: bba266ec0f2d24031ae464044449ee55,
+        type: 3}
+      propertyPath: m_ReceiveGI
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: bba266ec0f2d24031ae464044449ee55,
         type: 3}

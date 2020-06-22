@@ -19,17 +19,17 @@ namespace Kyoto
             if (cameraStateViewPivot == null) {cameraStateViewPivot = GameObject.Find("CameraStateViewPivot").GetComponent<Transform>();}
         }
 
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
+        // // Start is called before the first frame update
+        // void Start()
+        // {
+        //
+        // }
+        //
+        // // Update is called once per frame
+        // void Update()
+        // {
+        //
+        // }
 
         public void SetStateView ()
         {
@@ -39,6 +39,7 @@ namespace Kyoto
             }
         }
 
+        // do we still need this?
         public void SendStateMessage ()
         {
             GameObject.Find("World").BroadcastMessage(currentState.GetComponent<StateView>().message);
@@ -64,5 +65,17 @@ namespace Kyoto
             }
         }
 
+        public void SetStateViewing()
+        {
+            ChangeState("ViewingState");
+        }
+        public void SetStateRaking()
+        {
+            ChangeState("RakingState");
+        }
+        public void SetStatePlacing()
+        {
+            ChangeState("PlacingState");
+        }
     }
 }

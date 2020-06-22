@@ -15,7 +15,7 @@ namespace Kyoto
         }
 
         public ViewStateController viewState;
-        public BoxCollider collider;
+        public BoxCollider tileCollider;
         public Vector3 boundsCenter, boundsMin, boundsMax;
         public TileEdge enterEdge, exitEdge;
 
@@ -26,10 +26,10 @@ namespace Kyoto
         {
             // refactor
             viewState = GameObject.Find("GameController").GetComponent<ViewStateController>();
-            collider = GetComponent<BoxCollider>();
-            boundsCenter = collider.bounds.center;
-            boundsMin  = collider.bounds.min;
-            boundsMax = collider.bounds.max;
+            tileCollider = GetComponent<BoxCollider>();
+            boundsCenter = tileCollider.bounds.center;
+            boundsMin  = tileCollider.bounds.min;
+            boundsMax = tileCollider.bounds.max;
             enterEdge = exitEdge = TileEdge.None;
         }
 
@@ -56,7 +56,7 @@ namespace Kyoto
             {
                 exitEdge = GetEdge(Input.mousePosition);
             }
-            
+
             // gameObject.GetComponentInChildren<Renderer>().material.SetTexture("_BumpMap", switcher);
 
             // check if we're in the Raking state
@@ -99,9 +99,9 @@ namespace Kyoto
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
             {
                 // world coords
-                Vector3 closestPoint = collider.ClosestPointOnBounds(hit.point);
+                Vector3 closestPoint = tileCollider.ClosestPointOnBounds(hit.point);
                 // local coords
-                // Vector3 closestPoint = transform.InverseTransformPoint(collider.ClosestPointOnBounds(hit.point));
+                // Vector3 closestPoint = transform.InverseTransformPoint(tileCollider.ClosestPointOnBounds(hit.point));
                 // Debug.Log("Closest point: " + closestPoint);
                 // if (Mathf.Approximately(closestPoint.x, boundsMin.x)) {Debug.Log("Left");}
                 if ((Mathf.Abs(closestPoint.x - boundsMin.x)) < gameController.rakeThreshold)
