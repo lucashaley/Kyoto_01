@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using Pixelplacement;
 
 namespace Kyoto
@@ -20,10 +21,12 @@ namespace Kyoto
         }
 
         // // Start is called before the first frame update
-        // void Start()
-        // {
-        //
-        // }
+        void Start()
+        {
+            Assert.IsNotNull(gameController);
+            Assert.IsNotNull(cameraUserViewPivot);
+            Assert.IsNotNull(cameraStateViewPivot);
+        }
         //
         // // Update is called once per frame
         // void Update()
@@ -63,6 +66,11 @@ namespace Kyoto
             {
                 Tween.Rotate (cameraUserViewPivot, new Vector3 (0, -90, 0), Space.Self, gameController.stateChangeTime, 0f, Tween.EaseInOutStrong, Tween.LoopType.None, ()=>isRotating=true, ()=>isRotating=false);
             }
+        }
+
+        public string GetCurrentStateName()
+        {
+            return currentState.gameObject.name;
         }
 
         public void SetStateViewing()
