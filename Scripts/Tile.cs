@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// HAVE CHANGED ORIGIN POINT OF MODEL: DOES NOT WORK
+
 namespace Kyoto
 {
     public class Tile : KyotoBase
@@ -63,9 +65,13 @@ namespace Kyoto
             // REFACTOR
             if (gameController.viewStateController.currentState.gameObject.name == "RakingState")
             {
+                // REFACTOR
+                // stop repeating all the set textures
+                Texture newTexture;
                 // Debug.Log(enterEdge & exitEdge);
                 if ((enterEdge == TileEdge.Top || enterEdge == TileEdge.Bottom) && (exitEdge == TileEdge.Top || exitEdge == TileEdge.Bottom))
                 {
+                    newTexture = TopBottom;
                     gameObject.GetComponentInChildren<Renderer>().material.SetTexture("_BumpMap", TopBottom);
                 }
                 if ((enterEdge == TileEdge.Left || enterEdge == TileEdge.Right) && (exitEdge == TileEdge.Left || exitEdge == TileEdge.Right))
@@ -88,6 +94,9 @@ namespace Kyoto
                 {
                     gameObject.GetComponentInChildren<Renderer>().material.SetTexture("_BumpMap", TopRight);
                 }
+                //REFACTOR
+                // and just do it here once
+                // GameObject.SetComponentInChildren<Renderer>().material.SetTexture("_BumpMap", newTexture);
             }
         }
 
@@ -98,6 +107,7 @@ namespace Kyoto
             Ray ray = Camera.main.ScreenPointToRay(mousePosition);
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
             {
+                Debug.LogWarning("<color=lime>Tile</color>.<color=cyan>GetEdge</color>", hit.collider.gameObject);
                 // world coords
                 Vector3 closestPoint = tileCollider.ClosestPointOnBounds(hit.point);
                 // local coords

@@ -59,5 +59,10 @@ namespace Kyoto
         {
             return new Vector3(v.x, v.y, v.z + z);
         }
+
+        public static Vector2 Vector2NoY(this Vector3 v)
+        {
+            return new Vector2(v.x, v.z);
+        }
     }
 }

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab85f8a5390441989537ece599f5395, type: 3}
+  m_Name: Test_WeightedCycleList
+  m_EditorClassIdentifier: 
+  valueToWatch: {fileID: 11400000, guid: df51cfb7c130d49c3b58a76a2610001b, type: 2}
+  list:
+  - {fileID: 11400000, guid: 216491170b44a48fa970310de35d22c4, type: 2}
+  - {fileID: 11400000, guid: 9daf3358e0ea849f1af428b6a67d0146, type: 2}

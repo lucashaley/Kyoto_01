@@ -15,6 +15,8 @@ namespace Kyoto
         public PlaceableManager placeableManager;
         public BoxCollider col;
 
+        private LayerMask mask;
+
         void Awake()
         {
             rend = GetComponent<Renderer>();
@@ -22,6 +24,7 @@ namespace Kyoto
             placeableManager = PlaceableManager.Instance;
             placerLayer = LayerMask.GetMask("Placers");
             col = GetComponent<BoxCollider>();
+            mask = LayerMask.GetMask("Tiles");
         }
 
         // Start is called before the first frame update
@@ -173,6 +176,23 @@ namespace Kyoto
         void OnTriggerStay(Collider col)
         {
             Debug.Log("TriggerStay");
+            Debug.Log("TriggerStay: " + col.gameObject.name);
+        }
+
+        Transform TransformFromRaycast()
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, 100, mask))
+            {
+                Debug.DrawLine(ray.origin, hit.point);
+                return hit.transform;
+            } else {
+                // Change this
+                // But to what?
+                return transform;
+            }
         }
     }
 }

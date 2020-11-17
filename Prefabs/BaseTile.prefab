@@ -48,7 +48,7 @@ MonoBehaviour:
   gameController: {fileID: 0}
   inputController: {fileID: 0}
   viewState: {fileID: 0}
-  collider: {fileID: 0}
+  tileCollider: {fileID: 0}
   boundsCenter: {x: 0, y: 0, z: 0}
   boundsMin: {x: 0, y: 0, z: 0}
   boundsMax: {x: 0, y: 0, z: 0}
@@ -72,7 +72,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 0.15, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0.5, y: -0.075, z: 0.5}
 --- !u!1001 &1806168573700518031
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -83,7 +83,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: dbc2fc2b39b0548ff84d30def081bf90,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: dbc2fc2b39b0548ff84d30def081bf90,
         type: 3}
@@ -93,7 +93,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: dbc2fc2b39b0548ff84d30def081bf90,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: dbc2fc2b39b0548ff84d30def081bf90,
         type: 3}

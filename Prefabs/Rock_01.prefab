@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5203164070491822888
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4673491093357564794}
+  m_Layer: 18
+  m_Name: Model
+  m_TagString: GameObject_Model
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4673491093357564794
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5203164070491822888}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5, y: 0, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2905331696747179378}
+  m_Father: {fileID: 7866516441092994049}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7866516441092994051
 GameObject:
   m_ObjectHideFlags: 0
@@ -30,8 +61,8 @@ Transform:
   m_LocalPosition: {x: -2, y: 0, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2905331696747179378}
   - {fileID: 1472189726}
+  - {fileID: 4673491093357564794}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -76,6 +107,9 @@ MonoBehaviour:
   isRotating: 0
   isTranslating: 0
   offset: {x: 0, y: 0, z: 0}
+  location: {x: 0, y: 0}
+  dimensions: {x: 0, y: 0}
+  scaled: {x: 0, y: 0}
 --- !u!1001 &4666514560794090519
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -86,7 +120,7 @@ PrefabInstance:
     - target: {fileID: 4666514559881578761, guid: d7c3de84eed8c474e9bdcf9d53276a3e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4666514559881578761, guid: d7c3de84eed8c474e9bdcf9d53276a3e,
         type: 3}
@@ -96,7 +130,7 @@ PrefabInstance:
     - target: {fileID: 4666514559881578761, guid: d7c3de84eed8c474e9bdcf9d53276a3e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4666514559881578761, guid: d7c3de84eed8c474e9bdcf9d53276a3e,
         type: 3}
@@ -121,7 +155,7 @@ PrefabInstance:
     - target: {fileID: 4666514559881578761, guid: d7c3de84eed8c474e9bdcf9d53276a3e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4666514559881578761, guid: d7c3de84eed8c474e9bdcf9d53276a3e,
         type: 3}
@@ -156,12 +190,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 7866516441092994049}
+    m_TransformParent: {fileID: 4673491093357564794}
     m_Modifications:
     - target: {fileID: -4216859302048453862, guid: bba266ec0f2d24031ae464044449ee55,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: bba266ec0f2d24031ae464044449ee55,
         type: 3}
@@ -176,7 +210,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: bba266ec0f2d24031ae464044449ee55,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: bba266ec0f2d24031ae464044449ee55,
         type: 3}
@@ -212,6 +246,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: bba266ec0f2d24031ae464044449ee55,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: bba266ec0f2d24031ae464044449ee55,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: bba266ec0f2d24031ae464044449ee55,
         type: 3}

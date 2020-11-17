@@ -10,6 +10,7 @@ namespace Kyoto
         [SerializeField] private string locationName = default;
         [SerializeField] private float longitude = default, latitude = default;
         [SerializeField] private float offsetUTC = default;
+        [SerializeField] private List<SeasonAsset> seasonAssets;
 
         public float Longitude
         {

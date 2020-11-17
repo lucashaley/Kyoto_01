@@ -36,9 +36,13 @@ namespace Kyoto
         void Awake()
         {
             mainCanvasObject = GameObject.Find("MainCanvas");
+            Debug.Assert(mainCanvasObject != null, "Could not find <color=red>MainCanvas</color>.", gameObject);
             debugTextObject = GameObject.Find("DebugText");
+            Debug.Assert(debugTextObject != null, "Could not find <color=red>debugTextObject</color>.", gameObject);
             gameDateNormalizedText = GameObject.Find("GameDateNormalized").GetComponent<Text>();
+            Debug.Assert(gameDateNormalizedText != null, "Could not find <color=red>gameDateNormalizedText</color>.", gameObject);
             gameTimeText = GameObject.Find("GameTime").GetComponent<Text>();
+            Debug.Assert(gameTimeText != null, "Could not find <color=red>gameTimeText</color>.", gameObject);
             timeController = TimeController.Instance;
             // REFACTOR
             viewStateController = GameObject.Find("ViewController").GetComponent<ViewStateController>();

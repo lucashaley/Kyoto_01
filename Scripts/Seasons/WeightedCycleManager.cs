@@ -4,14 +4,15 @@ using UnityEngine;
 
 namespace Kyoto
 {
-    [DisallowMultipleComponent]
-    [SelectionBase]
-    public class WorldObject : MonoBehaviour
+    public class WeightedCycleManager : MonoBehaviour
     {
+        public WeightedCycleList list;
+        public Gradient gra;
+
         // Start is called before the first frame update
         void Start()
         {
-
+            list.InitCurves();
         }
 
         // Update is called once per frame

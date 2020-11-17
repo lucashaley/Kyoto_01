@@ -6,7 +6,7 @@ using System.Collections;
 // https://learn.unity.com/tutorial/extension-methods#5c89416dedbc2a1410355318
 namespace Kyoto
 {
-    public static class ExtensionMethods
+    public static class TransformExtensions
     {
         //Even though they are used like normal methods, extension
         //methods must be declared static. Notice that the first

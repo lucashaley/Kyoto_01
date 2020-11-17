@@ -7,7 +7,7 @@ namespace Kyoto {
   public class Seasonable : MonoBehaviour
   {
     [SerializeField]
-    private KyotoDictionary seasonStates;
+    private KyotoDictionary seasonStates = default;
     public float[] seasonStatesArray;
 
     public void Start ()

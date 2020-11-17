@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Pixelplacement;
+using UnityAtoms;
+using UnityAtoms.BaseAtoms;
 
 namespace Kyoto
 {
@@ -28,6 +30,8 @@ namespace Kyoto
         public float gameDateNormalized;
         public float gameTimeNormalized;
         // public float gameDateNormalizedDelta = 0f;
+        public FloatVariable gameDateNormalizedVariable;
+        public FloatVariable gameTimeNormalizedVariable;
 
         private GameController gameController;
 
@@ -70,6 +74,9 @@ namespace Kyoto
             realDateTime.AddSeconds(Time.unscaledDeltaTime);
             gameDateNormalized = gameDateTime.NormalizedDate();
             gameTimeNormalized = gameDateTime.NormalizedTime();
+
+            gameDateNormalizedVariable.Value = gameDateTime.NormalizedDate();
+            gameTimeNormalizedVariable.Value = gameDateTime.NormalizedTime();
 
             gameController.UpdateGameDateNormalizedText(gameDateNormalized);
         }
